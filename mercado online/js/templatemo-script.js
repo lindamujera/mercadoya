@@ -1,21 +1,24 @@
 /*
+
 TemplateMo 560 Astro Motion
+
 https://templatemo.com/tm-560-astro-motion
+
 */
 
 var gallery = undefined;
 
 function closeMenu() {
-  \$(".navbar-collapse").removeClass("show"); 
+  $(".navbar-collapse").removeClass("show"); 
 }
 
 function highlightMenu(no) {
-  \$(".navbar .navbar-nav > .nav-item").removeClass('selected');
-  \$(".navbar .navbar-nav > .nav-item > .nav-link[data-no='" + no + "']").parent().addClass('selected');
+  $(".navbar .navbar-nav > .nav-item").removeClass('selected');
+  $(".navbar .navbar-nav > .nav-item > .nav-link[data-no='" + no + "']").parent().addClass('selected');
 }
 
 function setupGallery() {
-  gallery = \$('.gallery-slider').slick({
+  gallery = $('.gallery-slider').slick({
     slidesToShow: 5,
     slidesToScroll: 3,
     dots: true,
@@ -44,6 +47,9 @@ function setupGallery() {
           slidesToScroll: 2
         }
       }
+      // You can unslick at a given breakpoint now by adding:
+      // settings: "unslick"
+      // instead of a settings object
     ]
   });
 }
@@ -71,23 +77,27 @@ function setBackgroundVideoForPage(pageNo) {
 
 function openPage(no) {
   setBackgroundVideoForPage(no);
-  \$('body').toggleClass('purchase-active', Number(no) === 2);
-  \(('body').toggleClass('home-active', Number(no) === 1);\)('body').toggleClass('promotions-active', Number(no) === 5);
+  $('body').toggleClass('purchase-active', Number(no) === 2);
+  $('body').toggleClass('home-active', Number(no) === 1);
+  $('body').toggleClass('promotions-active', Number(no) === 5);
   document.getElementById('promotion-callout').hidden = Number(no) !== 2;
 
   if(no == 2) {
     if(gallery == undefined) {
       setupGallery();
     } else {
-      \$('.gallery-slider').slick('unslick');
+      $('.gallery-slider').slick('unslick');
       setupGallery();
     }    
   }
 
-  \(('.cd-hero-slider li').hide();\)('.cd-hero-slider li[data-page-no="' + no + '"]').fadeIn();
+  $('.cd-hero-slider li').hide();
+  $('.cd-hero-slider li[data-page-no="' + no + '"]')
+    .fadeIn();
 }
 
-\((window).on('load', function() {\)('body').addClass('loaded');
+$(window).on('load', function() {
+  $('body').addClass('loaded');
   var initialPage = window.location.hash === '#promociones' ? 5 : (window.location.hash === '#comprar' ? 2 : 1);
   openPage(initialPage);
   if(initialPage === 2 && document.getElementById('cart-count').textContent !== '0') {
@@ -96,20 +106,21 @@ function openPage(no) {
 });
 
 jQuery(function() {
-    \$('.tm-page-link').on('click', function(){
-      var pageNo = \$(this).data('page-no');
+    $('.tm-page-link').on('click', function(){
+      var pageNo = $(this).data('page-no');
       openPage(pageNo);
       highlightMenu(pageNo);
     });
 
-    \$(".navbar .navbar-nav > .nav-item > a.nav-link").on('click', function(e){
-      var pageNo = \$(this).data('no');
+    $(".navbar .navbar-nav > .nav-item > a.nav-link").on('click', function(e){
+      var pageNo = $(this).data('no');
+
       openPage(pageNo);
       highlightMenu(pageNo);
       closeMenu();     
     });
 
-    \$("html").click(function(e) {
+    $("html").click(function(e) {
       closeMenu();
     });
 });
