@@ -121,7 +121,7 @@ jQuery(function() {
 document.addEventListener("DOMContentLoaded", function() {
     // 1. URL DE TU APP EN CLEVER CLOUD 
     // (Cambia el "tu-app-aqui" por el nombre real de tu aplicación en Clever Cloud)
-    const URL_CLEVER_CLOUD = 'https://cleverapps.io';
+   const URL_CLEVER_CLOUD = 'https://cleverapps.io';
 
     // Envío Asíncrono para el Formulario de Contacto (Página 4)
     const contactForm = document.getElementById('contactForm');
