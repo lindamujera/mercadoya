@@ -201,57 +201,58 @@
             </div>
           </li>
 
-          <!-- Página 4: Contacto -->
-          <li data-page-no="4">
-            <div class="mx-auto page-width-2">
-              <div class="row">
-                <div class="col-md-6 me-0 ms-auto">
-                  <h2 class="mb-4">Contáctanos</h2>
-                </div>
-              </div>
-              <div class="row">
-                <!-- FORMULARIO CORREGIDO -->
-                <div class="col-md-6 tm-contact-left">
-                  <form id="contactForm" action="javascript:void(0);" method="POST" class="contact-form">
-                    <div class="input-group tm-mb-30">
-                        <input name="name" type="text" class="form-control rounded-0 border-top-0 border-end-0 border-start-0" placeholder="Nombre" required>
-                    </div>
-                    <div class="input-group tm-mb-30">
-                        <input name="email" type="email" class="form-control rounded-0 border-top-0 border-end-0 border-start-0" placeholder="Correo electrónico" required>
-                    </div>
-                    <div class="input-group tm-mb-30">
-                        <textarea name="message" rows="5" class="form-control rounded-0 border-top-0 border-end-0 border-start-0" placeholder="Mensaje" required></textarea>
-                    </div>
-                    <div class="input-group tm-mb-30">
-                        <input type="submit" class="btn btn-primary tm-btn-submit rounded-0" value="Enviar">
-                    </div>
-                    
-                    <div id="formResponse" class="mt-3"></div>
-                  </form>
-                </div>
+<!-- Página 4: Contacto -->
+<li data-page-no="4">
+  <div class="mx-auto page-width-2">
+    <div class="row">
+      <div class="col-md-6 me-0 ms-auto">
+        <h2 class="mb-4">Contáctanos</h2>
+      </div>
+    </div>
+    <div class="row">
+      <!-- FORMULARIO CONECTADO A CLEVER-CLOUD VIA FETCH/AJAX -->
+      <div class="col-md-6 tm-contact-left">
+        <form id="contactForm" method="POST" class="contact-form">
+          <div class="input-group tm-mb-30">
+              <input name="name" id="contactName" type="text" class="form-control rounded-0 border-top-0 border-end-0 border-start-0" placeholder="Nombre" required>
+          </div>
+          <div class="input-group tm-mb-30">
+              <input name="email" id="contactEmail" type="email" class="form-control rounded-0 border-top-0 border-end-0 border-start-0" placeholder="Correo electrónico" required>
+          </div>
+          <div class="input-group tm-mb-30">
+              <textarea name="message" id="contactMessage" rows="5" class="form-control rounded-0 border-top-0 border-end-0 border-start-0" placeholder="Mensaje" required></textarea>
+          </div>
+          <div class="input-group tm-mb-30">
+              <input type="submit" class="btn btn-primary tm-btn-submit rounded-0" value="Enviar">
+          </div>
+          
+          <!-- Contenedor dinámico de respuestas (Éxito o Error) -->
+          <div id="formResponse" class="mt-3"></div>
+        </form>
+      </div>
 
-                <div class="col-md-6 tm-contact-right">                  
-                  <p class="mb-4">
-                    ¿Tienes dudas con tu pedido o necesitas ayuda con tu compra? Escríbenos a:
-                  </p>
-                  <div>
-                    Email: <a href="mailto:libbedoya1995@gmail.com" class="tm-link-white">libbedoya1995@gmail.com</a>
-                  </div>
-                  <div class="tm-mb-45">
-                    Tel: <a href="tel:3155012850" class="tm-link-white">3155012850</a>
-                  </div>
-                  <!-- Map -->
-                  <div class="map-outer">
-                    <div class="gmap-canvas">
-                        <iframe width="100%" height="320" id="gmap-canvas" title="Mapa de Colombia" loading="lazy"
-                          src="https://maps.google.com/maps?q=Colombia&t=&z=5&ie=UTF8&iwloc=&output=embed"
-                          frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>            
-          </li>
+      <div class="col-md-6 tm-contact-right">                  
+        <p class="mb-4">
+          ¿Tienes dudas con tu pedido o necesitas ayuda con tu compra? Escríbenos a:
+        </p>
+        <div>
+          Email: <a href="mailto:libbedoya1995@gmail.com" class="tm-link-white">libbedoya1995@gmail.com</a>
+        </div>
+        <div class="tm-mb-45">
+          Tel: <a href="tel:3155012850" class="tm-link-white">3155012850</a>
+        </div>
+        <!-- Map -->
+        <div class="map-outer">
+          <div class="gmap-canvas">
+              <iframe width="100%" height="320" id="gmap-canvas" title="Mapa de Colombia" loading="lazy"
+                src="https://maps.google.com/maps?q=Colombia&t=&z=5&ie=UTF8&iwloc=&output=embed"
+                frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>            
+</li>
 
           <!-- Página 5: Promociones. Duplica cada article y cambia src, alt, h3, del y strong. -->
           <li id="promociones" data-page-no="5" class="px-3">
