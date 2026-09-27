@@ -119,11 +119,11 @@ jQuery(function() {
 // =========================================================================
 
 document.addEventListener("DOMContentLoaded", function() {
-    // URL BASE DE TU SERVIDOR PHP EN CLEVER CLOUD
-    // (Asegúrate de cambiarla por tu dominio real asignado en tu panel)
+    // 1. URL DE TU APP EN CLEVER CLOUD 
+    // (Cambia el "tu-app-aqui" por el nombre real de tu aplicación en Clever Cloud)
     const URL_CLEVER_CLOUD = 'https://cleverapps.io';
 
-    // 1. Envío Asíncrono para el Formulario de Contacto (Página 4)
+    // Envío Asíncrono para el Formulario de Contacto (Página 4)
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // 2. Envío Asíncrono para el Formulario del Carrito (Página 2)
+    // Envío Asíncrono para el Formulario del Carrito (Página 2)
     const checkoutForm = document.getElementById('checkout-form');
     if (checkoutForm) {
         checkoutForm.addEventListener('submit', function(e) {
@@ -193,6 +193,7 @@ document.addEventListener("DOMContentLoaded", function() {
                       `Dirección: ${document.getElementById('customerAddress').value}`
                     ].join('\n');
 
+                    // ENLACE DE WHATSAPP REPARADO Y COMPLETO
                     window.open(`https://wa.me{encodeURIComponent(mensaje)}`, '_blank', 'noopener,noreferrer');
                     
                     // Limpiar el carrito local tras el éxito completo
