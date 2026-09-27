@@ -10,11 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
-// 2. Configuración de conexión con tus credenciales reales de Clever Cloud
-$host = '://clever-cloud.com';
+// 2. Configuración de conexión corregida para tu servidor de Clever Cloud
+$host = 'b58gxtqjsy1gquogbom1-mysql.services.clever-cloud.com'; // <-- Servidor corregido
 $user = 'b58gxtqjsy1gquogbom1';
 $db   = 'b58gxtqjsy1gquogbom1';
-// ¡REEMPLAZA AQUÍ ABAJO CON LA CONTRASEÑA REAL QUE COPIASTE DE LA PESTAÑA "INFORMACIÓN"!
+// ¡REEMPLAZA AQUÍ ABAJO CON TU CONTRASEÑA REAL DE LA PESTAÑA INFORMACIÓN!
 $pass = 'TU_CONTRASEÑA_REAL_DE_CLEVER_CLOUD'; 
 
 $conn = new mysqli($host, $user, $pass, $db, 3306);
@@ -26,25 +26,21 @@ if ($conn->connect_error) {
 }
 
 // 3. Recibir los campos enviados por el formulario HTML de contacto
-$nombre  = $_POST['name'] ?? '';
-$email   = $_POST['email'] ?? '';
+$nombre  = $_POST['name'] ?? $_POST['customerName'] ?? 'Anónimo';
+$email   = $_POST['email'] ?? 'cliente@mercadoya.com';
 $message = $_POST['message'] ?? '';
+
+// Si viene del carrito de compras y no del formulario de contacto general
+if (empty($message) && isset($_POST['customerPhone'])) {
+    $message = "Pedido de Tienda. Teléfono: " . ($_POST['customerPhone'] ?? '') . " | Dirección: " . ($_POST['customerAddress'] ?? '');
+}
 
 // Validar que los campos esenciales no estén vacíos
 if (!empty($nombre) && !empty($message)) {
     
-    // Generar la fecha y hora actuales automáticamente
-    $fecha = date('Y-m-d');
-    $hora  = date('H:i');
-    
-    // Adaptar el mensaje del cliente al campo 'servicio' para que quepa en tu tabla actual
-    $servicio_texto = 'Contacto: ' . substr($message, 0, 80); // Corta el texto si es muy largo
-    $especialista   = 'soporte';
-    $duracion       = 0;
-
-    // Consulta preparada adaptada a la estructura exacta de tu tabla 'reservas'
-    $stmt = $conn->prepare("INSERT INTO reservas (nombre, email, fecha, hora, servicio, especialista, duracion_minutos) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssi", $nombre, $email, $fecha, $hora, $servicio_texto, $especialista, $duracion);
+    // Consulta preparada adaptada a la estructura EXACTA de tu tabla 'contactos'
+    $stmt = $conn->prepare("INSERT INTO contactos (nombre, email, mensaje) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $nombre, $email, $message);
 
     if ($stmt->execute()) {
         echo json_encode(['status' => 'success', 'message' => '¡Registro guardado con éxito en Clever Cloud!']);
