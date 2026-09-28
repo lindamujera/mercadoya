@@ -10,16 +10,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
-// 2. Configuración de conexión corregida para tu servidor de Clever Cloud
-$host = 'b58gxtqjsy1gq0ogbom1-mysql.services.clever-cloud.com'; // Dirección exacta de tu host
-$user = 'ueq2fkf4qva7dqd6';                                   // Tu usuario real destapado
-$db   = 'b58gxtqjsy1gq0ogbom1';                                   // Nombre real de tu base de datos
-$pass = 'BFReWhnxWgQejcm8PZUR';                                   // Tu contraseña real destapada
+// 2. Conexión segura extrayendo las credenciales ocultas desde las variables de Render
+$host = getenv('DB_HOST');
+$user = getenv('DB_USER');
+$db   = getenv('DB_NAME');
+$pass = getenv('DB_PASS');
 $port = 3306;
+
+// Validar que las variables existan en el servidor antes de conectar
+if (!$host || !$user || !$db || !$pass) {
+    echo json_encode(['status' => 'error', 'message' => 'Faltan las variables de entorno en el servidor']);
+    exit;
+}
 
 $conn = new mysqli($host, $user, $pass, $db, $port);
 
-// Verificar conexión
+// Verificar conexión con la base de datos remota
 if ($conn->connect_error) {
     echo json_encode(['status' => 'error', 'message' => 'Error de conexión con la base de datos remota']);
     exit;
@@ -43,7 +49,7 @@ if (!empty($nombre) && !empty($message)) {
     $stmt->bind_param("sss", $nombre, $email, $message);
 
     if ($stmt->execute()) {
-        echo json_encode(['status' => 'success', 'message' => '¡Registro guardado con éxito en Clever Cloud!']);
+        echo json_encode(['status' => 'success', 'message' => '¡Registro guardado con éxito de forma segura!']);
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Error al ejecutar la consulta en la base de datos']);
     }
