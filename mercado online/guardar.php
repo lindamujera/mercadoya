@@ -11,13 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // 2. Configuración de conexión corregida para tu servidor de Clever Cloud
-$host = 'b58gxtqjsy1gquogbom1-mysql.services.clever-cloud.com'; // <-- Servidor corregido
-$user = 'b58gxtqjsy1gquogbom1';
-$db   = 'b58gxtqjsy1gquogbom1';
-// ¡REEMPLAZA AQUÍ ABAJO CON TU CONTRASEÑA REAL DE LA PESTAÑA INFORMACIÓN!
-$pass = 'TU_CONTRASEÑA_REAL_DE_CLEVER_CLOUD'; 
+$host = 'b58gxtqjsy1gq0ogbom1-mysql.services.clever-cloud.com'; // Dirección exacta de tu host
+$user = 'ueq2fkf4qva7dqd6';                                   // Tu usuario real destapado
+$db   = 'b58gxtqjsy1gq0ogbom1';                                   // Nombre real de tu base de datos
+$pass = 'BFReWhnxWgQejcm8PZUR';                                   // Tu contraseña real destapada
+$port = 3306;
 
-$conn = new mysqli($host, $user, $pass, $db, 3306);
+$conn = new mysqli($host, $user, $pass, $db, $port);
 
 // Verificar conexión
 if ($conn->connect_error) {
