@@ -1150,6 +1150,29 @@ body {
     font-weight: 700;
 }
 
+.navbar .navbar-brand {
+    color: #ff3449;
+    text-shadow: 0 2px 0 #7b111f, 0 0 8px rgba(255, 44, 66, 0.9), 0 0 22px rgba(255, 35, 58, 0.58);
+}
+
+.navbar .navbar-brand .brand-hours {
+    color: #ffd0d5;
+    text-shadow: 0 1px 0 #871222, 0 0 8px rgba(255, 48, 72, 0.95), 0 0 18px rgba(255, 48, 72, 0.82);
+}
+
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus-visible {
+    color: #ff6979;
+}
+
+body.promotions-active .navbar .navbar-brand {
+    color: #ff3449;
+}
+
+body.promotions-active .navbar .navbar-brand .brand-hours {
+    color: #ffd0d5;
+}
+
 .navbar .navbar-nav .nav-item {
     margin-right: 5px;
     margin-left: 5px;
@@ -1537,6 +1560,23 @@ body {
         transition: none;
     }
 }
+}
+
+.navbar .navbar-brand,
+body.promotions-active .navbar .navbar-brand {
+    color: #ff3449;
+    text-shadow: 0 2px 0 #7b111f, 0 0 8px rgba(255, 44, 66, 0.9), 0 0 22px rgba(255, 35, 58, 0.58);
+}
+
+.navbar .navbar-brand .brand-hours,
+body.promotions-active .navbar .navbar-brand .brand-hours {
+    color: #ffd0d5;
+    text-shadow: 0 1px 0 #871222, 0 0 8px rgba(255, 48, 72, 0.95), 0 0 18px rgba(255, 48, 72, 0.82);
+}
+
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus-visible {
+    color: #ff6979;
 }
 /* Forzar que el cargador desaparezca tras iniciar el sitio */
 #loader-wrapper {
